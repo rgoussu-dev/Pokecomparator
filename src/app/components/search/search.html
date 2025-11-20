@@ -1,0 +1,48 @@
+<div class="search-container">
+  <div class="search-header">
+    <h1>Pokemon Search</h1>
+    <p>Search for any Pokemon by name or ID</p>
+  </div>
+
+  <div class="search-box">
+    <div class="input-group">
+      <input
+        type="text"
+        [(ngModel)]="searchInput"
+        (keypress)="onKeyPress($event)"
+        placeholder="Enter Pokemon name or ID"
+        [disabled]="loading()"
+        class="search-input"
+      />
+      <button (click)="onSearch()" [disabled]="isSearchDisabled()" class="search-button">
+        @if (loading()) {
+          <span class="loading-spinner"></span>
+          Searching...
+        } @else {
+          🔍 Search
+        }
+      </button>
+    </div>
+
+    @if (error()) {
+      <div class="error-message">⚠️ {{ error() }}</div>
+    }
+  </div>
+
+  @if (pokemon()) {
+    <div class="results">
+      <app-pokemon-display [pokemon]="pokemon()!" />
+    </div>
+  }
+
+  @if (!pokemon() && !loading() && !error()) {
+    <div class="welcome-message">
+      <p>
+        Enter a Pokemon name (e.g., "pikachu", "charizard") or ID (e.g., "25", "6") to get started!
+      </p>
+      <p class="hint">
+        💡 Tip: You can search by name with special characters like "mr-mime" or "ho-oh"
+      </p>
+    </div>
+  }
+</div>
