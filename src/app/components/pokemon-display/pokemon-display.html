@@ -1,0 +1,37 @@
+<div class="pokemon-card">
+  <div class="pokemon-header">
+    <h2>{{ getDisplayName() }}</h2>
+    <span class="pokemon-id">#{{ pokemon().id }}</span>
+  </div>
+
+  <div class="pokemon-image">
+    <img [src]="getPokemonImage()" [alt]="pokemon().name" />
+  </div>
+
+  <div class="pokemon-types">
+    @for (type of pokemon().types; track type.slot) {
+      <span class="type-badge" [style.background-color]="getTypeColor(type.type.name)">
+        {{ type.type.name | titlecase }}
+      </span>
+    }
+  </div>
+
+  <div class="pokemon-stats">
+    <h3>Base Stats</h3>
+    @for (stat of pokemon().stats; track stat.stat.name) {
+      <div class="stat-row">
+        <span class="stat-name">{{ formatStatName(stat.stat.name) }}</span>
+        <div class="stat-bar-container">
+          <div
+            class="stat-bar"
+            [style.width.%]="(stat.base_stat / 255) * 100"
+            [class.high]="stat.base_stat >= 100"
+            [class.medium]="stat.base_stat >= 50 && stat.base_stat < 100"
+            [class.low]="stat.base_stat < 50"
+          ></div>
+          <span class="stat-value">{{ stat.base_stat }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</div>
