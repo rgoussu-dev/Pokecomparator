@@ -18,6 +18,13 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pokecomparator-app');
+    expect(compiled.querySelector('h1')?.textContent).toContain('pokecomparator-app');
+  });
+
+  it('should render pokemon card component', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-pokemon-card')).toBeTruthy();
   });
 });
