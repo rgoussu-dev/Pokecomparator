@@ -16,10 +16,7 @@ export class PokemonDisplay {
    */
   getPokemonImage(): string {
     const pokemon = this.pokemon();
-    return (
-      pokemon.sprites.other['official-artwork'].front_default ||
-      pokemon.sprites.front_default
-    );
+    return pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default;
   }
 
   /**

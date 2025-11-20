@@ -10,7 +10,7 @@ import { Pokemon } from '../models/pokemon.model';
 export class PokemonService {
   private readonly http = inject(HttpClient);
   private readonly apiUrl = 'https://pokeapi.co/api/v2/pokemon';
-  
+
   // Cache for both ID and name lookups
   private cache = new Map<string, Pokemon>();
 
@@ -21,7 +21,7 @@ export class PokemonService {
    */
   getPokemonById(id: number): Observable<Pokemon> {
     const cacheKey = id.toString();
-    
+
     // Check cache first
     if (this.cache.has(cacheKey)) {
       return of(this.cache.get(cacheKey)!);
@@ -33,7 +33,7 @@ export class PokemonService {
         this.cache.set(cacheKey, pokemon);
         this.cache.set(pokemon.name.toLowerCase(), pokemon);
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     );
   }
 
@@ -45,7 +45,7 @@ export class PokemonService {
   getPokemonByName(name: string): Observable<Pokemon> {
     // Normalize name: trim, lowercase
     const normalizedName = name.trim().toLowerCase();
-    
+
     // Check cache first
     if (this.cache.has(normalizedName)) {
       return of(this.cache.get(normalizedName)!);
@@ -57,7 +57,7 @@ export class PokemonService {
         this.cache.set(normalizedName, pokemon);
         this.cache.set(pokemon.id.toString(), pokemon);
       }),
-      catchError(this.handleError)
+      catchError(this.handleError),
     );
   }
 

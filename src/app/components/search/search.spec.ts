@@ -134,12 +134,12 @@ describe('Search', () => {
       pokemonService.getPokemonByName.and.returnValue(of(mockPokemon));
 
       component.searchInput.set('pikachu');
-      
+
       // Before search
       expect(component.loading()).toBe(false);
-      
+
       component.onSearch();
-      
+
       // After search completes
       expect(component.loading()).toBe(false);
       expect(component.pokemon()).toEqual(mockPokemon);
@@ -147,9 +147,7 @@ describe('Search', () => {
 
     it('should handle search error', () => {
       const errorMessage = 'Pokemon not found. Please check the spelling and try again.';
-      pokemonService.getPokemonByName.and.returnValue(
-        throwError(() => new Error(errorMessage))
-      );
+      pokemonService.getPokemonByName.and.returnValue(throwError(() => new Error(errorMessage)));
 
       component.searchInput.set('fakemon');
       component.onSearch();
@@ -177,10 +175,10 @@ describe('Search', () => {
   describe('onKeyPress', () => {
     it('should trigger search on Enter key', () => {
       pokemonService.getPokemonByName.and.returnValue(of(mockPokemon));
-      
+
       component.searchInput.set('pikachu');
       const event = new KeyboardEvent('keypress', { key: 'Enter' });
-      
+
       component.onKeyPress(event);
 
       expect(pokemonService.getPokemonByName).toHaveBeenCalledWith('pikachu');
@@ -189,7 +187,7 @@ describe('Search', () => {
     it('should not trigger search on other keys', () => {
       component.searchInput.set('pikachu');
       const event = new KeyboardEvent('keypress', { key: 'a' });
-      
+
       component.onKeyPress(event);
 
       expect(pokemonService.getPokemonByName).not.toHaveBeenCalled();

@@ -6,7 +6,6 @@ import { Search } from './components/search/search';
   selector: 'app-root',
   imports: [RouterOutlet, Search],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App {
-}
+export class App {}
