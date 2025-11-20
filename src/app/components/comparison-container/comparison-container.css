@@ -1,0 +1,165 @@
+.comparison-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.comparison-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.control-button {
+  padding: 0.875rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-button {
+  background: #F44336;
+  color: white;
+}
+
+.clear-button:hover {
+  background: #D32F2F;
+}
+
+.swap-button {
+  background: #FF9800;
+  color: white;
+}
+
+.swap-button:hover {
+  background: #F57C00;
+}
+
+.control-button:active {
+  transform: scale(0.98);
+}
+
+.pokemon-comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.pokemon-slot {
+  min-height: 400px;
+}
+
+.comparison-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.vs-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-slot {
+  background: white;
+  border: 3px dashed #e0e0e0;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: border-color 0.3s ease;
+}
+
+.empty-slot:hover {
+  border-color: #2196F3;
+}
+
+.empty-slot-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #999;
+  margin-bottom: 1rem;
+}
+
+.empty-slot h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.empty-slot p {
+  margin: 0;
+  color: #999;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1024px) {
+  .pokemon-comparison-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pokemon-comparison-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 1rem;
+  }
+
+  .comparison-divider {
+    padding: 0;
+  }
+
+  .vs-badge {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .empty-slot {
+    padding: 2rem 1rem;
+    min-height: 300px;
+  }
+
+  .empty-slot-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .comparison-controls {
+    flex-direction: column;
+  }
+
+  .control-button {
+    width: 100%;
+  }
+}

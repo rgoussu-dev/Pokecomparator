@@ -1,0 +1,47 @@
+<div class="pokemon-card">
+  <div class="card-header">
+    <h2 class="pokemon-name">{{ pokemon().name | titlecase }}</h2>
+    <span class="pokemon-id">#{{ pokemon().id.toString().padStart(3, '0') }}</span>
+  </div>
+  
+  <div class="pokemon-image-container">
+    <img 
+      [src]="getOfficialArtwork()" 
+      [alt]="pokemon().name"
+      class="pokemon-image"
+    />
+  </div>
+  
+  <div class="pokemon-types">
+    @for (typeInfo of pokemon().types; track typeInfo.slot) {
+      <span 
+        class="type-badge"
+        [style.background-color]="getTypeColor(typeInfo.type.name)"
+      >
+        {{ typeInfo.type.name | titlecase }}
+      </span>
+    }
+  </div>
+  
+  <div class="pokemon-stats">
+    <h3>Base Stats</h3>
+    @for (stat of pokemon().stats; track stat.stat.name) {
+      <div class="stat-row">
+        <span class="stat-name">{{ getStatName(stat.stat.name) }}</span>
+        <div class="stat-bar-container">
+          <div 
+            class="stat-bar"
+            [style.width.%]="(stat.base_stat / 255) * 100"
+          ></div>
+        </div>
+        <span class="stat-value">{{ stat.base_stat }}</span>
+      </div>
+    }
+  </div>
+
+  @if (showChangeButton()) {
+    <button class="change-button" (click)="onChangeClick()">
+      Change Pokemon
+    </button>
+  }
+</div>
