@@ -1,0 +1,65 @@
+<div class="comparison-container">
+  @if (comparisonService.hasAnyPokemon()) {
+    <div class="comparison-controls">
+      <button 
+        class="control-button clear-button"
+        (click)="onClearComparison()"
+      >
+        Clear Comparison
+      </button>
+      @if (comparisonService.hasBothPokemon()) {
+        <button 
+          class="control-button swap-button"
+          (click)="onSwapPokemon()"
+        >
+          Swap Pokemon
+        </button>
+      }
+    </div>
+  }
+
+  <div class="pokemon-comparison-grid">
+    <div class="pokemon-slot slot-1">
+      @if (comparisonService.pokemon1(); as pokemon) {
+        <app-pokemon-card 
+          [pokemon]="pokemon"
+          [showChangeButton]="true"
+          (changeClicked)="onChangePokemon1()"
+        />
+      } @else {
+        <div class="empty-slot">
+          <div class="empty-slot-icon">1</div>
+          <h3>Slot 1 Empty</h3>
+          <p>Search for a Pokemon and add it to Slot 1</p>
+        </div>
+      }
+    </div>
+
+    <div class="comparison-divider">
+      <span class="vs-badge">VS</span>
+    </div>
+
+    <div class="pokemon-slot slot-2">
+      @if (comparisonService.pokemon2(); as pokemon) {
+        <app-pokemon-card 
+          [pokemon]="pokemon"
+          [showChangeButton]="true"
+          (changeClicked)="onChangePokemon2()"
+        />
+      } @else {
+        <div class="empty-slot">
+          <div class="empty-slot-icon">2</div>
+          <h3>Slot 2 Empty</h3>
+          <p>Search for a Pokemon and add it to Slot 2</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (comparisonService.hasBothPokemon()) {
+    <app-comparison-chart 
+      [pokemon1]="comparisonService.pokemon1()!"
+      [pokemon2]="comparisonService.pokemon2()!"
+    />
+  }
+</div>

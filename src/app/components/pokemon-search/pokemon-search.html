@@ -1,0 +1,64 @@
+<div class="pokemon-search">
+  <div class="search-header">
+    <h2>Pokemon Comparator</h2>
+    <p>Search and compare your favorite Pokemon!</p>
+  </div>
+
+  <div class="mode-selector">
+    <button 
+      class="mode-button"
+      [class.active]="searchMode() === 'compare'"
+      (click)="onModeChange('compare')"
+    >
+      Compare Mode
+    </button>
+  </div>
+
+  @if (searchMode() === 'compare') {
+    <div class="slot-selector">
+      <label>Add to:</label>
+      <button 
+        class="slot-button"
+        [class.active]="selectedSlot() === 'slot1'"
+        (click)="onSlotChange('slot1')"
+      >
+        Slot 1
+      </button>
+      <button 
+        class="slot-button"
+        [class.active]="selectedSlot() === 'slot2'"
+        (click)="onSlotChange('slot2')"
+      >
+        Slot 2
+      </button>
+    </div>
+  }
+
+  <div class="search-container">
+    <input 
+      type="text"
+      class="search-input"
+      placeholder="Enter Pokemon name or ID (e.g., pikachu or 25)"
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="onSearch()"
+      [disabled]="isLoading()"
+    />
+    <button 
+      class="search-button"
+      (click)="onSearch()"
+      [disabled]="isLoading()"
+    >
+      @if (isLoading()) {
+        <span class="loading-spinner"></span>
+      } @else {
+        Search
+      }
+    </button>
+  </div>
+
+  @if (errorMessage()) {
+    <div class="error-message">
+      {{ errorMessage() }}
+    </div>
+  }
+</div>

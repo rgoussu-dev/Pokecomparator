@@ -1,0 +1,158 @@
+.comparison-chart {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 1rem 0;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.chart-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.legend {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.legend-color.pokemon1 {
+  background: #FF6B6B;
+}
+
+.legend-color.pokemon2 {
+  background: #4ECDC4;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.stats-table {
+  border-top: 2px solid #e0e0e0;
+  padding-top: 1rem;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 100px;
+  gap: 1rem;
+  padding: 0.75rem 0.5rem;
+  align-items: center;
+}
+
+.table-header {
+  font-weight: 600;
+  color: #666;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-row {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.stat-name-col {
+  font-weight: 500;
+}
+
+.pokemon-col {
+  text-align: center;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.pokemon-col.higher {
+  color: #4CAF50;
+}
+
+.pokemon-col.lower {
+  color: #F44336;
+}
+
+.pokemon-col.tie {
+  color: #666;
+}
+
+.indicator {
+  font-size: 1.125rem;
+}
+
+.diff-col {
+  text-align: center;
+  font-weight: 600;
+}
+
+.diff-col.positive {
+  color: #4CAF50;
+}
+
+.diff-col.negative {
+  color: #F44336;
+}
+
+@media (max-width: 768px) {
+  .comparison-chart {
+    padding: 1rem;
+  }
+
+  .chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table-header,
+  .table-row {
+    grid-template-columns: 80px 1fr 1fr 70px;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .stat-name-col {
+    font-size: 0.75rem;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
