@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
   },
   "prettier": {
     "printWidth": 100,
@@ -33,8 +34,15 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@angular-architects/module-federation": "^20.0.0",
+    "@angular-devkit/build-angular": "^21.0.1",
+    "@angular/build": "^21.0.1",
     "@angular/cli": "^21.0.1",
     "@angular/compiler-cli": "^21.0.0",
-    "typescript": "~5.9.2"
+    "jsdom": "^27.1.0",
+    "ng-packagr": "^21.0.0",
+    "ngx-build-plus": "^20.0.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
   }
 }

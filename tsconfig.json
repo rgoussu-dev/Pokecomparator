@@ -1,8 +1,17 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "domain": [
+        "./dist/domain"
+      ],
+      "infra": [
+        "./dist/infra"
+      ],
+      "ui": [
+        "./dist/ui"
+      ]
+    },
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -21,5 +30,49 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/host/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/host/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/remote-catalog/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/remote-catalog/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/remote-detail/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/remote-detail/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/remote-compare/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/remote-compare/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/domain/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/domain/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/infra/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/infra/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ui/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ui/tsconfig.spec.json"
+    }
+  ]
 }
