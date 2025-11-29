@@ -1,0 +1,8 @@
+<div 
+    [class]="{'box': true, 'bordered': borderWidth !== null, 'no-border': borderWidth === null}" 
+    [style.--padding]="`var(--${padding})`" 
+    [style.--border-width]="`var(--${borderWidth || 's-2'})`"
+    [style.--background-color]="backgroundColor || 'transparent'"
+    [style.--color]="color">
+    <ng-content></ng-content>
+</div>

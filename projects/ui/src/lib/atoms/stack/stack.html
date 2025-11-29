@@ -1,3 +1,5 @@
-<div class="stack" [style.--space]="`var(--${space})`">
+<div 
+  [class]="{'stack': true, 'simple-stack': !recursive, 'recursive-stack': recursive}"  
+  [style.--space]="`var(--${space})`">
   <ng-content></ng-content>
 </div>

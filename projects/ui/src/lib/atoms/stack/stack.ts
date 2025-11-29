@@ -1,4 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Size } from '../../types/size';
 
 @Component({
   selector: 'stack',
@@ -8,5 +9,6 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class Stack {
-  @Input() space: string = '--s-1';
+  @Input() space: Size = 's-1';
+  @Input() recursive: boolean = false;
 }

@@ -8,6 +8,10 @@
     margin-block: 0;
 }
 
-.stack > * + * {
+.simple-stack > * + * {
+    margin-block-start: var(--space);
+}
+
+.recursive-stack * + * {
     margin-block-start: var(--space);
 }

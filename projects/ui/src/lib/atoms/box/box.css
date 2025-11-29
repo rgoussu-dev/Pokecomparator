@@ -1,0 +1,19 @@
+.box {
+    padding: var(--padding);
+    background-color: var(--background-color);
+    color: var(--color);  
+}
+
+.box.bordered {
+    border: var(--border-width) solid;
+}
+
+.box.no-border {
+   border: 0 solid;
+   outline: var(--border-width) solid transparent;
+   outline-offset: calc(var(--border-width) * -1);      
+}
+
+.box * {
+    color: inherit;
+}

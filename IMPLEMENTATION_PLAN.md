@@ -51,9 +51,11 @@ ng generate library ui --prefix=pc
 ng generate library models --prefix=pc  # optional
 ```
 
+
+Note : you need to update the angular.json and set the outputPath on each remote and the host, otherwise due to a knwon bug it won't launch properly 
+
 4) Install Module Federation helper and chart libs
 
-Note : you need to update the 
 
 ```bash
 npm install --save-dev @angular-architects/module-federation

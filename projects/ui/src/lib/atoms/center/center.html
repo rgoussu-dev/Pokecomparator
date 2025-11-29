@@ -1,0 +1,7 @@
+<div 
+    [class]="{'center': true, 'text-center': centerText, 'intrinsic': intrinsic, 'with-gutter': gutterWidth != null}" 
+    [style.--max-width]="`var(--${maxWidth})`"
+    [style.--gutter-width]="gutterWidth ? `var(--${gutterWidth})` : null"
+    >
+    <ng-content></ng-content>
+</div>

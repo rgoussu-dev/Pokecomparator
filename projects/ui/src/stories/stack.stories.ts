@@ -1,26 +1,38 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { fn } from 'storybook/test';
 
 import { Stack } from '../lib/atoms/stack/stack';
 
+
+type StackStoryArgs = {
+  space: 's-5' | 's-4' | 's-3' | 's-2' | 's-1' | 's0' | 's1' | 's2' | 's3' | 's4' | 's5' | 'measure';
+  otherSpace?: 's-5' | 's-4' | 's-3' | 's-2' | 's-1' | 's0' | 's1' | 's2' | 's3' | 's4' | 's5' | 'measure';
+  recursive?: boolean;
+}
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
-const meta: Meta<Stack> = {
+const meta: Meta<StackStoryArgs> = {
   title: 'Atoms/Stack',
   component: Stack,
   tags: ['autodocs'],
   argTypes: {
     space: {
-      control: 'text',
+      control: 'select',
+      options: ['s-5', 's-4', 's-3', 's-2', 's-1', 's0', 's1', 's2', 's3', 's4', 's5', 'measure'],
+    },
+    otherSpace: {
+      control: 'select',
+      options: ['s-5', 's-4', 's-3', 's-2', 's-1', 's0', 's1', 's2', 's3', 's4', 's5', 'measure'],
+    },
+    recursive: {
+      control: 'boolean',
     },
   },
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#story-args
 };
 
 export default meta;
-type Story = StoryObj<Stack>;
+type Story = StoryObj<StackStoryArgs>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Default: Story = {
+export const Simple: Story = {
   args: {
     space: 's1',
   },
@@ -31,6 +43,50 @@ export const Default: Story = {
         <div style="background-color: lightgray; padding: 8px;">Item 1</div>
         <div style="background-color: lightgray; padding: 8px;">Item 2</div>
         <div style="background-color: lightgray; padding: 8px;">Item 3</div>
+      </stack>
+    `,
+  }),
+};
+
+export const Nested: Story = {
+  args: {
+    space: 's1',
+    otherSpace: 's2'
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <stack [space]="space">
+
+        <div style="background-color: lightgray; padding: 8px;">Item 1</div>
+        <div style="background-color: lightgray; padding: 8px;">Item 2</div>
+        <div style="background-color: lightgray; padding: 8px;">Item 3</div>
+        <stack [space]="otherSpace">
+          <div style="background-color: lightgray; padding: 8px;">Nested Item 1</div>
+          <div style="background-color: lightgray; padding: 8px;">Nested Item 2</div>
+          <div style="background-color: lightgray; padding: 8px;">Nested Item 2</div>
+        </stack>
+      </stack>
+    `,
+  }),
+};
+
+export const Recursive: Story = {
+  args: {
+    space: 's1',
+    recursive: true,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <stack [space]="space" [recursive]="recursive">
+        <div style="background-color: lightgray; padding: 8px;">Item 1</div>
+        <div style="background-color: lightgray; padding: 8px;">Item 2</div>
+        <div style="background-color: lightgray; padding: 8px;">Item 3</div>
+        <div style="background-color: lightgray; padding: 8px;">
+          <div style="background-color: black; padding: 8px; color: white;">Nested Item 1</div>
+          <div style="background-color: black; padding: 8px; color: white;">Nested Item 2</div>
+        </div>
       </stack>
     `,
   }),
