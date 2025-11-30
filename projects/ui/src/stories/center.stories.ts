@@ -76,7 +76,7 @@ export const intrinsic: Story = {
         props: args,
         template: `
     <div style="background-color: lightgray; padding: 1rem;">
-        <pc-center [maxWidth]="maxWidth" [intrinsic]="intrinsic">
+        <pc-center [maxWidth]="maxWidth" [intrinsic]="intrinsic" [gutterWidth]="gutterWidth" [centerText]="centerText">
             <div style="padding: 1rem; background-color: black; color: white;">Hello there</div>
         </pc-center>
     </div>

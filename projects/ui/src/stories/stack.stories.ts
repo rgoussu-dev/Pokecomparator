@@ -39,11 +39,11 @@ export const Simple: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <stack [space]="space">
+      <pc-stack [space]="space">
         <div style="background-color: lightgray; padding: 8px;">Item 1</div>
         <div style="background-color: lightgray; padding: 8px;">Item 2</div>
         <div style="background-color: lightgray; padding: 8px;">Item 3</div>
-      </stack>
+      </pc-stack>
     `,
   }),
 };
@@ -56,17 +56,17 @@ export const Nested: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <stack [space]="space">
+      <pc-stack [space]="space">
 
         <div style="background-color: lightgray; padding: 8px;">Item 1</div>
         <div style="background-color: lightgray; padding: 8px;">Item 2</div>
         <div style="background-color: lightgray; padding: 8px;">Item 3</div>
-        <stack [space]="otherSpace">
+        <pc-stack [space]="otherSpace">
           <div style="background-color: lightgray; padding: 8px;">Nested Item 1</div>
           <div style="background-color: lightgray; padding: 8px;">Nested Item 2</div>
           <div style="background-color: lightgray; padding: 8px;">Nested Item 2</div>
-        </stack>
-      </stack>
+        </pc-stack>
+      </pc-stack>
     `,
   }),
 };
@@ -79,15 +79,19 @@ export const Recursive: Story = {
   render: (args) => ({
     props: args,
     template: `
-      <stack [space]="space" [recursive]="recursive">
+      <pc-stack [space]="space" [recursive]="recursive">
         <div style="background-color: lightgray; padding: 8px;">Item 1</div>
         <div style="background-color: lightgray; padding: 8px;">Item 2</div>
         <div style="background-color: lightgray; padding: 8px;">Item 3</div>
         <div style="background-color: lightgray; padding: 8px;">
           <div style="background-color: black; padding: 8px; color: white;">Nested Item 1</div>
           <div style="background-color: black; padding: 8px; color: white;">Nested Item 2</div>
+          <pc-stack [space]="otherSpace">
+            <div style="background-color: black; padding: 8px; color: white;">Deeply Nested Item 1</div>
+            <div style="background-color: black; padding: 8px; color: white;">Deeply Nested Item 2</div>
+          </pc-stack>
         </div>
-      </stack>
+      </pc-stack>
     `,
   }),
 };
