@@ -1,0 +1,9 @@
+<button
+  [attr.aria-label]="ariaLabel"
+  [disabled]="disabled"
+  [attr.type]="type"
+  [class]="['pc-button', 'pc-button--' + variant, 'pc-button--' + size, fullWidth ? 'pc-button--full' : '', rounded ? 'pc-button--rounded' : ''].join(' ')"
+  
+>
+  <ng-content></ng-content>
+</button>

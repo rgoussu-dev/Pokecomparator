@@ -60,11 +60,7 @@ export class Sidebar implements OnInit, OnChanges, OnDestroy {
     // Determine selectors based on side
     const sidebarSelector = side === 'right' ? '> :last-child' : '> :first-child';
     const contentSelector = side === 'right' ? '> :first-child' : '> :last-child';
-    // Sidebar width fallback
-    const sidebarBasis = sideWidth ? sideWidth : 'auto';
-    // Content min width
     const contentMinInline = contentMin || '50%';
-    // Flex align
     const align = noStretch ? 'flex-start' : 'stretch';
     return `
       .with-sidebar[data-pc-sidebar="${signature}"] {
@@ -73,10 +69,12 @@ export class Sidebar implements OnInit, OnChanges, OnDestroy {
         gap: ${space};
         align-items: ${align};
       }
+
       .with-sidebar[data-pc-sidebar="${signature}"] ${sidebarSelector} {
         ${sideWidth ? `flex-basis: ${sideWidth};` : ''}
         flex-grow: 1;
       }
+
       .with-sidebar[data-pc-sidebar="${signature}"] ${contentSelector} {
         flex-basis: 0;
         flex-grow: 999;

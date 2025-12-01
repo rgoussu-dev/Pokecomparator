@@ -1,0 +1,72 @@
+.pc-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--s-2);
+  font-weight: 600;
+  font-size: var(--s0);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease, opacity 120ms ease, box-shadow 200ms cubic-bezier(.2,.8,.2,1);
+}
+
+.pc-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pc-button--primary {
+  background: var(--color-primary, #1976d2);
+  color: #fff;
+  border: none;
+}
+
+.pc-button--secondary {
+  background: transparent;
+  color: var(--color-text, #222);
+  border: 1px solid var(--color-border, #d0d0d0);
+}
+
+.pc-button--ghost {
+  background: transparent;
+  color: inherit;
+  border: none;
+}
+
+.pc-button--sm { padding: var(--s-3) var(--s-4); font-size: var(--s-1); }
+.pc-button--md { padding: var(--s-3) var(--s-3); font-size: var(--s0); }
+.pc-button--lg { padding: var(--s-2) var(--s-2); font-size: var(--s1); }
+
+.pc-button--full { width: 100%; }
+
+.pc-button--rounded { border-radius: 9999px; }
+
+/* Hover: cast shadow to bottom-right only (tiered) */
+.pc-button:hover:not(:disabled) {
+  /* two-tiered directional shadow: near darker offset + softer larger blur */
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.14), 12px 12px 24px rgba(0,0,0,0.06);
+}
+
+/* Focus matches hover direction but more subtle ring for accessibility */
+.pc-button:focus-visible {
+  outline: none;
+  box-shadow: 4px 4px 10px rgba(0,0,0,0.12), 0 0 0 3px rgba(25,118,210,0.06);
+}
+
+/* Press feedback: subtle translate + scale and reduced shadow to mimic physical press */
+.pc-button:active:not(:disabled) {
+  transform: translateY(2px) scale(0.995);
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.08), 8px 8px 18px rgba(0,0,0,0.04);
+  transition: transform 120ms cubic-bezier(.2,.8,.2,1), box-shadow 120ms ease;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .pc-button {
+    transition: none;
+  }
+  .pc-button:active {
+    transform: none;
+  }
+}

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { generateSignature, injectStyle } from '../helpers/atom-config-helper';
 
-function parseRatio(ratio: string): { n: number; d: number } {
+const parseRatio = (ratio: string): { n: number; d: number } => {
   const [n, d] = ratio.split(':').map(Number);
   return {
     n: isNaN(n) ? 16 : n,

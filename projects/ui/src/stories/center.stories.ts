@@ -39,7 +39,7 @@ export const Simple: Story = {
     render: (args) => ({
         props: args,
         template: `
-    <div style="background-color: lightgray; padding: 2rem;">
+    <div style="background-color: lightgray;">
         <pc-center [maxWidth]="maxWidth">
             <span style="padding: 1rem; background-color: black; color: white;">Hello there</span>
         </pc-center>
@@ -56,7 +56,7 @@ export const CenterText: Story = {
     render: (args) => ({
         props: args,
         template: `
-    <div style="background-color: lightgray; padding: 2rem;">
+    <div style="background-color: lightgray;">
         <pc-center [maxWidth]="maxWidth" [centerText]="centerText">
             <span style="padding: 1rem; background-color: black; color: white;">Hello there</span>
         </pc-center>
@@ -75,7 +75,7 @@ export const Full: Story = {
     render: (args) => ({
         props: args,
         template: `
-    <div style="background-color: lightgray; padding: 2rem;">
+    <div style="background-color: lightgray;">
         <pc-center [maxWidth]="maxWidth" [intrinsic]="intrinsic" [gutterWidth]="gutterWidth" [centerText]="centerText">
             <span style="padding: 1rem; background-color: black; color: white;">Hello there</span>
         </pc-center>

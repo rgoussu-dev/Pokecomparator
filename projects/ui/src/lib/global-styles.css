@@ -26,10 +26,25 @@ div,
 header,
 nav,
 main,
-footer {
+footer,
+[data-pc-box],
+[data-pc-icon],
+[data-pc-frame],
+[data-pc-cluster],
+[data-pc-sidebar],
+[data-pc-stack],
+[data-pc-switcher],
+[data-pc-reel],
+[data-pc-container],
+[data-pc-grid],
+[data-pc-imposter] {
     max-inline-size: none;
 }
 
 img { 
     max-width: 100% 
+}
+
+body{
+    margin: 0;
 }

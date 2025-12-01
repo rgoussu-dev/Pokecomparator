@@ -33,6 +33,11 @@
                 "glob": "**/*",
                 "input": "projects/host/public",
                 "output": "."
+              },
+              {
+                "glob": "**/*",
+                "input": "./projects/ui/assets",
+                "output": "assets/ui"
               }
             ],
             "styles": [
@@ -118,6 +123,11 @@
                 "glob": "**/*",
                 "input": "projects/remote-catalog/public",
                 "output": "."
+              },
+              {
+                "glob": "**/*",
+                "input": "./projects/ui/assets",
+                "output": "assets/ui"
               }
             ],
             "styles": [
@@ -203,6 +213,11 @@
                 "glob": "**/*",
                 "input": "projects/remote-detail/public",
                 "output": "."
+              },
+              {
+                "glob": "**/*",
+                "input": "./projects/ui/assets",
+                "output": "assets/ui"
               }
             ],
             "styles": [
@@ -288,6 +303,11 @@
                 "glob": "**/*",
                 "input": "projects/remote-compare/public",
                 "output": "."
+              },
+              {
+                "glob": "**/*",
+                "input": "./projects/ui/assets",
+                "output": "assets/ui"
               }
             ],
             "styles": [
@@ -441,6 +461,13 @@
             "port": 6006,
             "styles": [
               "projects/ui/src/lib/global-styles.css"
+            ],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/ui/assets",
+                "output": "assets"
+              }
             ]
           }
         },
@@ -453,6 +480,13 @@
             "outputDir": "dist/storybook/ui",
             "styles":[
               "projects/ui/src/lib/global-styles.css"
+            ],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/ui/assets",
+                "output": "assets"
+              }
             ]
           }
         }

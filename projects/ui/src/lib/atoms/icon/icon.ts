@@ -5,8 +5,8 @@ import { ALL_SIZES, Size } from '../../types/size';
 @Component({
   selector: 'pc-icon',
   template: `
-    <span class="with-icon" [attr.aria-label]="label ? label : null" [attr.role]="label ? 'img' : null">
-      <svg class="icon">
+    <span class="with-icon" [attr.data-pc-icon]="ident" [attr.aria-label]="label ? label : null" [attr.role]="label ? 'img' : null">
+      <svg class="icon" [attr.data-pc-icon]="ident">
         <use [attr.href]="iconHref"></use>
       </svg>
     </span>
@@ -59,17 +59,18 @@ export class Icon implements OnInit, OnChanges, OnDestroy {
   private generateStyle(signature: string, config: { space: string | null; label: string | null }): string {
     const { space } = config;
     return `
-      .with-icon[data-pc-icon="${signature}"] {
-        display: inline-flex;
-        align-items: baseline;
-      }
-      .with-icon[data-pc-icon="${signature}"] .icon {
+        .icon[data-pc-icon="${signature}"] {
         width: 0.75em;
         width: 1cap;
         height: 0.75em;
         height: 1cap;
         ${space !== null ? `margin-inline-end: ${space};` : ''}
       }
+      .with-icon[data-pc-icon="${signature}"] {
+        display: inline-flex;
+        align-items: baseline;
+      }
+ 
     `;
   }
 

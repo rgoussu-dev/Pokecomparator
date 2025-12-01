@@ -1,5 +1,4 @@
 import type { StorybookConfig } from '@storybook/angular';
-import path from 'path';
 
 const config: StorybookConfig = {
   "stories": [
@@ -12,6 +11,9 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-styling-webpack",
   ],
-  "framework": "@storybook/angular"
+  "framework": "@storybook/angular",
+  "staticDirs": [
+    { from: '../assets', to: '/assets/ui' }
+  ],
 };
 export default config;

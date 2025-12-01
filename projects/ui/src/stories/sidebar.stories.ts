@@ -42,9 +42,6 @@ const meta: Meta<Sidebar> = {
       defaultValue: false,
     },
   },
-  parameters: {
-    layout: 'padded',
-  },
 };
 
 export default meta;

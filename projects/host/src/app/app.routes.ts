@@ -5,10 +5,12 @@ import { HomeComponent } from './components/home/home.component';
 
 export const APP_ROUTES: Routes = [
     {
+        title: 'Home',
         path: '',
         component: HomeComponent
     },
     {
+        title: 'Pokemon Catalog',
         path: 'catalog',
         loadChildren: () => loadRemoteModule({
             type: 'module',
@@ -17,6 +19,7 @@ export const APP_ROUTES: Routes = [
         }).then(m => m.CatalogModule)
     },
     {
+        title: 'Detail',
         path: 'detail',
         loadChildren: () => loadRemoteModule({
             type: 'module',
@@ -25,6 +28,7 @@ export const APP_ROUTES: Routes = [
         }).then(m => m.DetailModule)
     },
     {
+        title: 'Comparator',
         path: 'compare',
         loadChildren: () => loadRemoteModule({
             type: 'module',

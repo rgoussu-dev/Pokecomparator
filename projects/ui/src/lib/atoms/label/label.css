@@ -1,0 +1,11 @@
+.label {
+  font-weight: 500;
+  font-size: var(--s0);
+  color: inherit;
+  margin-bottom: var(--s-4);
+  display: inline-block;
+}
+.label-required {
+  color: #d32f2f;
+  margin-left: var(--s-4);
+}

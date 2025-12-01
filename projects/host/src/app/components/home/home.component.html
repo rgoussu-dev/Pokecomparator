@@ -1,1 +1,14 @@
-<p>home.component works!</p>
+<pc-header [logoSrc]="'assets/ui/logo.svg'" [links]="links"></pc-header>
+<pc-center [centerText]="true">
+  <pc-cover centered=".hero-content" minHeight="80vh" [noPad]="true">
+    <div class="hero-content">
+      <pc-cluster justify="center" [align]="'center'" space="s1">
+        <pc-stack>
+          <h1>Welcome to the PokeComparator !</h1>
+          <p>Compare Them All !</p>
+        </pc-stack>
+        <img src="assets/ui/logo_colored.svg" alt="Pokemon Hero" />
+      </pc-cluster>
+    </div>
+  </pc-cover>
+</pc-center>
