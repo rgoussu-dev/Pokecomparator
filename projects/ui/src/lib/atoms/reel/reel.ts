@@ -17,7 +17,8 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
   selector: 'pc-reel',
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'reel' }
 })
 export class Reel implements OnInit, OnChanges, OnDestroy {
   @Input() itemWidth: string = 'auto';

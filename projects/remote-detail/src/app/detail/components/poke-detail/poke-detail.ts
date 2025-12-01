@@ -2,19 +2,19 @@ import { Component, inject, signal, OnInit, OnDestroy, ChangeDetectionStrategy }
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil, debounceTime, distinctUntilChanged, switchMap, of } from 'rxjs';
 import { 
-  POKEMON_DETAIL_REPOSITORY, 
-  PokemonDetailRepository,
+  POKEMON_DETAIL_SERVICE, 
+  PokemonDetailService,
   PokemonDetail,
-  POKEMON_REPOSITORY,
-  PokemonRepository,
+  POKEMON_CATALOG_SERVICE,
+  PokemonCatalogService,
   PokemonSummary
 } from '@domain/src/public-api';
-import { Box, Center, Cluster, Stack, Frame, Button, Sidebar, Searchbar } from "@ui";
+import { Box, Center, Cluster, Stack, Frame, Button, Sidebar, Searchbar, Switcher, NavigationService } from "@ui";
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-poke-detail',
-  imports: [CommonModule, Box, Center, Cluster, Stack, Frame, Button, Sidebar, Searchbar],
+  imports: [CommonModule, Box, Center, Cluster, Stack, Frame, Button, Sidebar, Searchbar, Switcher],
   templateUrl: './poke-detail.html',
   styleUrl: './poke-detail.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -22,8 +22,9 @@ import { CommonModule } from '@angular/common';
 export class PokeDetail implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly pokemonDetailRepo = inject(POKEMON_DETAIL_REPOSITORY) as PokemonDetailRepository;
-  private readonly pokemonRepo = inject(POKEMON_REPOSITORY) as PokemonRepository;
+  private readonly pokemonDetailService = inject(POKEMON_DETAIL_SERVICE) as PokemonDetailService;
+  private readonly pokemonCatalogService = inject(POKEMON_CATALOG_SERVICE) as PokemonCatalogService;
+  private readonly navigationService = inject(NavigationService);
   private readonly destroy$ = new Subject<void>();
   private readonly searchSubject$ = new Subject<string>();
 
@@ -37,6 +38,9 @@ export class PokeDetail implements OnInit, OnDestroy {
   readonly isSearching = signal(false);
 
   ngOnInit(): void {
+    // Set up the back link in the header
+    this.navigationService.setBackLink('Back to Catalog', () => this.goToCatalog());
+
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
       const id = params['id'];
       if (id) {
@@ -57,10 +61,7 @@ export class PokeDetail implements OnInit, OnDestroy {
           return of({ items: [], totalCount: 0 });
         }
         this.isSearching.set(true);
-        return this.pokemonRepo.getPokemonList(
-          { page: 1, pageSize: 5 },
-          { search: query }
-        );
+        return this.pokemonCatalogService.searchPokemon(query, 5);
       })
     ).subscribe({
       next: (result) => {
@@ -75,6 +76,8 @@ export class PokeDetail implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // Clear the navigation when leaving the page
+    this.navigationService.clearBreadcrumbs();
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -83,7 +86,7 @@ export class PokeDetail implements OnInit, OnDestroy {
     this.isLoading.set(true);
     this.error.set(null);
 
-    this.pokemonDetailRepo.getPokemonDetail(id)
+    this.pokemonDetailService.getPokemonDetail(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (pokemon) => {

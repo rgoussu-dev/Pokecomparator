@@ -24,6 +24,7 @@ export interface PageChangeEvent {
   imports: [CommonModule, Stack, Cluster, Button, Box, Grid],
   templateUrl: './paginated-list.html',
   styleUrl: './paginated-list.css',
+  host: { 'data-pc-component': 'paginated-list' }
 })
 export class PaginatedList<T> {
   /** The items to display in the current page */

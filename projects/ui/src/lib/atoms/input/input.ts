@@ -3,7 +3,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'pc-input',
   templateUrl: './input.html',
-  styleUrls: ['./input.css']
+  styleUrls: ['./input.css'],
+  host: { 'data-pc-component': 'input' }
 })
 export class InputAtom {
   @Input() value: string = '';

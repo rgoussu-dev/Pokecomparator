@@ -24,21 +24,19 @@
     
     <pc-stack space="s1">
 
-      <!-- Header with back button -->
-       <pc-box>
-      <pc-cluster justify="space-between" align="center">
-        <pc-button variant="secondary" (click)="goToCatalog()">
-          ← Back to Catalog
-        </pc-button>
-        <span class="pokemon-number">{{ getFormattedId() }}</span>
-      </pc-cluster>
-    </pc-box>
+      <!-- Pokemon ID badge -->
+      <pc-box>
+        <pc-cluster justify="flex-end" align="center">
+          <span class="pokemon-number">{{ getFormattedId() }}</span>
+        </pc-cluster>
+      </pc-box>
+      
       <!-- Two column layout: Detail + Search sidebar -->
     <pc-box style="min-width: 66%;">
       <pc-center>
       <pc-sidebar side="right" contentMin="33%" space="s3" >
         <!-- Main Pokemon Detail (left/main content) -->
-        <pc-box padding="s2" backgroundColor="white" borderRadius="s0" borderWidth="s-5">
+        <pc-box padding="s2" backgroundColor="var(--color-surface)" borderRadius="s0" borderWidth="s-5">
           <pc-stack space="s1">
             
             <!-- Pokemon Image, Name, Types -->
@@ -62,25 +60,45 @@
               </pc-stack>
             </pc-center>
 
-            <!-- Physical Characteristics -->
-            <pc-box padding="s1" backgroundColor="#f9f9f9" borderRadius="s-1">
-              <pc-stack space="s0">
-                <h2 class="section-title">Physical Characteristics</h2>
-                <pc-cluster space="s3" justify="center">
-                  <pc-stack space="s-3" align="center">
-                    <span class="stat-value">{{ formatHeight(pokemon()!.physical.height) }}</span>
-                    <span class="stat-label">Height</span>
-                  </pc-stack>
-                  <pc-stack space="s-3" align="center">
-                    <span class="stat-value">{{ formatWeight(pokemon()!.physical.weight) }}</span>
-                    <span class="stat-label">Weight</span>
-                  </pc-stack>
-                </pc-cluster>
-              </pc-stack>
-            </pc-box>
+            <!-- Physical Characteristics & Abilities (side by side) -->
+            <pc-switcher threshold="20rem" space="s1" [limit]="2">
+              <!-- Physical Characteristics -->
+              <pc-box padding="s1" backgroundColor="var(--color-surface-alt)" borderRadius="s-1" class="info-card">
+                <pc-stack space="s0">
+                  <h2 class="section-title">Physical Characteristics</h2>
+                  <pc-cluster space="s3" justify="center">
+                    <pc-stack space="s-3" align="center">
+                      <span class="stat-value">{{ formatHeight(pokemon()!.physical.height) }}</span>
+                      <span class="stat-label">Height</span>
+                    </pc-stack>
+                    <pc-stack space="s-3" align="center">
+                      <span class="stat-value">{{ formatWeight(pokemon()!.physical.weight) }}</span>
+                      <span class="stat-label">Weight</span>
+                    </pc-stack>
+                  </pc-cluster>
+                </pc-stack>
+              </pc-box>
+
+              <!-- Abilities -->
+              <pc-box padding="s1" backgroundColor="var(--color-surface-alt)" borderRadius="s-1" class="info-card">
+                <pc-stack space="s0">
+                  <h2 class="section-title">Abilities</h2>
+                  <pc-cluster space="s-1" justify="center">
+                    @for (ability of pokemon()!.abilities; track ability.name) {
+                      <span class="ability-badge" [class.hidden-ability]="ability.isHidden">
+                        {{ ability.name }}
+                        @if (ability.isHidden) {
+                          <span class="hidden-tag">(Hidden)</span>
+                        }
+                      </span>
+                    }
+                  </pc-cluster>
+                </pc-stack>
+              </pc-box>
+            </pc-switcher>
 
             <!-- Base Stats -->
-            <pc-box padding="s1" backgroundColor="#f9f9f9" borderRadius="s-5">
+            <pc-box padding="s1" backgroundColor="var(--color-surface-alt)" borderRadius="s-5">
               <pc-stack space="s0">
                 <h2 class="section-title">Base Stats</h2>
                 <pc-stack space="s-2">
@@ -137,28 +155,11 @@
               </pc-stack>
             </pc-box>
 
-            <!-- Abilities -->
-            <pc-box padding="s1" backgroundColor="#f9f9f9" borderRadius="s-1">
-              <pc-stack space="s0">
-                <h2 class="section-title">Abilities</h2>
-                <pc-cluster space="s-1" justify="center">
-                  @for (ability of pokemon()!.abilities; track ability.name) {
-                    <span class="ability-badge" [class.hidden-ability]="ability.isHidden">
-                      {{ ability.name }}
-                      @if (ability.isHidden) {
-                        <span class="hidden-tag">(Hidden)</span>
-                      }
-                    </span>
-                  }
-                </pc-cluster>
-              </pc-stack>
-            </pc-box>
-
           </pc-stack>
         </pc-box>
 
         <!-- Search Sidebar (right) -->
-        <pc-box padding="s1" backgroundColor="white" borderRadius="s0" borderWidth="s-5">
+        <pc-box padding="s1" backgroundColor="var(--color-surface)" borderRadius="s0" borderWidth="s-5">
           <pc-stack space="s1">
             <h3 class="sidebar-title">Compare with...</h3>
             

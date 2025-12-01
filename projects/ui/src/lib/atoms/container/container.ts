@@ -34,7 +34,8 @@ import { generateSignature, injectStyle } from '../helpers/atom-config-helper';
   selector: 'pc-container',
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'container' }
 })
 export class Container implements OnInit, OnChanges, OnDestroy {
   @Input() name?: string;

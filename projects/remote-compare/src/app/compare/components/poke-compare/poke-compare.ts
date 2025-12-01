@@ -1,14 +1,13 @@
 import { Component, inject, signal, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject, forkJoin, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { 
-  POKEMON_DETAIL_REPOSITORY, 
-  PokemonDetailRepository,
-  COMPARISON_SERVICE,
-  ComparisonService,
+  POKEMON_DETAIL_SERVICE, 
+  PokemonDetailService,
   PokemonComparison,
   StatComparison
 } from '@domain/src/public-api';
+import { NavigationService } from '@ui';
 
 @Component({
   selector: 'app-poke-compare',
@@ -20,8 +19,8 @@ import {
 export class PokeCompare implements OnInit, OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly pokemonDetailRepo = inject(POKEMON_DETAIL_REPOSITORY) as PokemonDetailRepository;
-  private readonly comparisonService = inject(COMPARISON_SERVICE) as ComparisonService;
+  private readonly pokemonDetailService = inject(POKEMON_DETAIL_SERVICE) as PokemonDetailService;
+  private readonly navigationService = inject(NavigationService);
   private readonly destroy$ = new Subject<void>();
 
   readonly comparison = signal<PokemonComparison | null>(null);
@@ -32,6 +31,9 @@ export class PokeCompare implements OnInit, OnDestroy {
   readonly statsArray = signal<StatComparison[]>([]);
 
   ngOnInit(): void {
+    // Set up the back link in the header
+    this.navigationService.setBackLink('Back to Catalog', () => this.goToCatalog());
+
     this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe(params => {
       const id1 = params['pokemon1'];
       const id2 = params['pokemon2'];
@@ -46,6 +48,8 @@ export class PokeCompare implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    // Clear the navigation when leaving the page
+    this.navigationService.clearBreadcrumbs();
     this.destroy$.next();
     this.destroy$.complete();
   }
@@ -54,30 +58,28 @@ export class PokeCompare implements OnInit, OnDestroy {
     this.isLoading.set(true);
     this.error.set(null);
 
-    forkJoin([
-      this.pokemonDetailRepo.getPokemonDetail(id1),
-      this.pokemonDetailRepo.getPokemonDetail(id2)
-    ]).pipe(takeUntil(this.destroy$)).subscribe({
-      next: ([pokemon1, pokemon2]) => {
-        const result = this.comparisonService.compare(pokemon1, pokemon2);
-        this.comparison.set(result);
-        this.statsArray.set([
-          result.stats.hp,
-          result.stats.attack,
-          result.stats.defense,
-          result.stats.specialAttack,
-          result.stats.specialDefense,
-          result.stats.speed,
-          result.stats.total
-        ]);
-        this.isLoading.set(false);
-      },
-      error: (err) => {
-        console.error('Failed to load comparison:', err);
-        this.error.set('Failed to load Pokémon data. Please try again.');
-        this.isLoading.set(false);
-      }
-    });
+    this.pokemonDetailService.comparePokemon(id1, id2)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (result) => {
+          this.comparison.set(result);
+          this.statsArray.set([
+            result.stats.hp,
+            result.stats.attack,
+            result.stats.defense,
+            result.stats.specialAttack,
+            result.stats.specialDefense,
+            result.stats.speed,
+            result.stats.total
+          ]);
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.error('Failed to load comparison:', err);
+          this.error.set('Failed to load Pokémon data. Please try again.');
+          this.isLoading.set(false);
+        }
+      });
   }
 
   goToCatalog(): void {

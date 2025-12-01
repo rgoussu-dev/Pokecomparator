@@ -3,7 +3,8 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'pc-button',
   templateUrl: './button.html',
-  styleUrls: ['./button.css']
+  styleUrls: ['./button.css'],
+  host: { 'data-pc-component': 'button' }
 })
 export class Button {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';

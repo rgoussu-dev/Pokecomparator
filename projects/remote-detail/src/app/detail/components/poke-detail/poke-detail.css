@@ -1,11 +1,25 @@
 /* Detail Page - Minimal styles, rely on layout primitives */
 
+/* Info cards in switcher - equal height */
+.info-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-card > pc-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* Loading spinner animation */
 .loading-spinner {
   width: 3rem;
   height: 3rem;
-  border: 0.25rem solid #e0e0e0;
-  border-top-color: #cc0000;
+  border: 0.25rem solid var(--color-border);
+  border-top-color: var(--color-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -16,24 +30,26 @@
 
 .loading-text,
 .error-text {
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 .error-text {
-  color: #cc0000;
+  color: var(--color-error);
 }
 
 /* Pokemon number badge */
 .pokemon-number {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #666;
+  color: var(--color-text-muted);
 }
 
 /* Sprite styling */
 .sprite-frame {
-  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  background: linear-gradient(135deg, var(--color-surface-alt), var(--color-border));
   border-radius: 50%;
+  width: 150px;
+  max-width: 150px;
 }
 
 .pokemon-sprite {
@@ -44,6 +60,7 @@
 }
 
 .pokemon-name {
+  font-family: var(--font-family-heading);
   font-size: 2rem;
   font-weight: 700;
   margin: 0;
@@ -57,8 +74,8 @@
   font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: white;
-  background: #777;
+  color: var(--color-text-inverse);
+  background: var(--color-text-muted);
 }
 
 .type-badge[data-type="normal"] { background: #A8A878; }
@@ -96,7 +113,7 @@
 
 .stat-label {
   font-size: 0.8rem;
-  color: #666;
+  color: var(--color-text-muted);
   text-transform: uppercase;
 }
 
@@ -111,13 +128,13 @@
 .stat-name {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #666;
+  color: var(--color-text-muted);
   text-align: right;
 }
 
 .stat-bar-container {
   height: 0.6rem;
-  background: #e0e0e0;
+  background: var(--color-border);
   border-radius: 0.3rem;
   overflow: hidden;
 }
@@ -145,18 +162,18 @@
 .total-row {
   margin-top: 0.5rem;
   padding-top: 0.5rem;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--color-border);
 }
 
 .total-value {
-  color: #5050d0;
+  color: var(--color-primary);
 }
 
 /* Ability badges */
 .ability-badge {
   padding: 0.4rem 0.8rem;
-  background: white;
-  border: 2px solid #e0e0e0;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
   border-radius: 0.5rem;
   font-size: 0.8rem;
   text-transform: capitalize;
@@ -164,7 +181,7 @@
 
 .ability-badge.hidden-ability {
   border-color: #a040a0;
-  background: #f9f0f9;
+  background: color-mix(in srgb, #a040a0 10%, var(--color-surface));
 }
 
 .hidden-tag {
@@ -179,18 +196,18 @@
   font-weight: 600;
   margin: 0;
   text-align: center;
-  color: #333;
+  color: var(--color-text);
 }
 
 .search-status {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--color-text-muted);
   margin: 0;
 }
 
 .search-hint {
   font-size: 0.8rem;
-  color: #999;
+  color: var(--color-text-muted);
   text-align: center;
   margin: 0;
 }
@@ -200,8 +217,8 @@
   display: block;
   width: 100%;
   padding: 0.5rem;
-  background: #f9f9f9;
-  border: 1px solid #e0e0e0;
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.15s, border-color 0.15s;
@@ -209,8 +226,8 @@
 }
 
 .search-result-item:hover {
-  background: #f0f0f0;
-  border-color: #cc0000;
+  background: var(--color-surface-hover);
+  border-color: var(--color-primary);
 }
 
 .search-result-sprite {
@@ -224,9 +241,10 @@
   font-size: 0.9rem;
   font-weight: 600;
   text-transform: capitalize;
+  color: var(--color-text);
 }
 
 .search-result-id {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--color-text-muted);
 }

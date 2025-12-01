@@ -1,0 +1,36 @@
+<pc-cover centered=".hero-content" minHeight="80vh" [noPad]="true">
+  <pc-center class="hero-content" [centerText]="true">
+    <pc-stack space="s2">
+      <!-- Icon -->
+      <pc-center>
+        <div class="hero-icon">📖</div>
+      </pc-center>
+
+      <!-- Title -->
+      <pc-center>
+        <h1 class="hero-title">Pokémon <span class="highlight">Catalog</span></h1>
+      </pc-center>
+      
+      <!-- Subtitle -->
+      <pc-center>
+        <p class="hero-subtitle">Browse & Discover</p>
+      </pc-center>
+      
+      <!-- Description -->
+      <pc-center>
+        <p class="hero-description">
+          Explore the complete collection of Pokémon. Search, filter, and discover all your favorites.
+        </p>
+      </pc-center>
+
+      <!-- CTA Button -->
+      <pc-center>
+        <a routerLink="/catalog">
+          <pc-button variant="primary" size="lg">
+            Browse Catalog
+          </pc-button>
+        </a>
+      </pc-center>
+    </pc-stack>
+  </pc-center>
+</pc-cover>

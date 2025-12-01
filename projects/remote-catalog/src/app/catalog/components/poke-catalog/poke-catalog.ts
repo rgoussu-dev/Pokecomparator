@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, inject, signal, computed, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { PokemonSummary, POKEMON_REPOSITORY, PokemonFilter } from '@domain/src/public-api';
+import { PokemonSummary, POKEMON_CATALOG_SERVICE, PokemonFilter } from '@domain/src/public-api';
 import { PageChangeEvent } from '@ui';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -15,7 +15,7 @@ const MAX_SELECTION = 2;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PokeCatalog implements OnInit, OnDestroy {
-  private readonly pokemonRepository = inject(POKEMON_REPOSITORY);
+  private readonly pokemonCatalogService = inject(POKEMON_CATALOG_SERVICE);
   private readonly router = inject(Router);
   private readonly destroy$ = new Subject<void>();
 
@@ -114,7 +114,7 @@ export class PokeCatalog implements OnInit, OnDestroy {
       ? { search: this.searchQuery() } 
       : {};
 
-    this.pokemonRepository.getPokemonList(
+    this.pokemonCatalogService.getPokemonList(
       { page: this.currentPage(), pageSize: this.pageSize() },
       filter
     ).pipe(

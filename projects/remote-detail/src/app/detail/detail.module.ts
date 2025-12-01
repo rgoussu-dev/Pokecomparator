@@ -4,7 +4,15 @@ import { RouterModule } from "@angular/router";
 import { provideHttpClient } from "@angular/common/http";
 import { DETAIL_ROUTES } from "./detail.routes";
 import { PokeDetail } from "./components/poke-detail/poke-detail";
-import { POKEMON_DETAIL_REPOSITORY, POKEMON_REPOSITORY } from "@domain/src/public-api";
+import { 
+    POKEMON_DETAIL_REPOSITORY, 
+    POKEMON_REPOSITORY,
+    POKEMON_DETAIL_SERVICE,
+    PokemonDetailService,
+    POKEMON_CATALOG_SERVICE,
+    PokemonCatalogService,
+    ComparisonService
+} from "@domain/src/public-api";
 import { PokeApiDetailAdapter, PokeApiAdapter } from "@infra/src/public-api";
 
 @NgModule({
@@ -15,8 +23,13 @@ import { PokeApiDetailAdapter, PokeApiAdapter } from "@infra/src/public-api";
     ],
     providers: [
         provideHttpClient(),
+        // Infrastructure adapters bound to domain ports
         { provide: POKEMON_DETAIL_REPOSITORY, useClass: PokeApiDetailAdapter },
-        { provide: POKEMON_REPOSITORY, useClass: PokeApiAdapter }
+        { provide: POKEMON_REPOSITORY, useClass: PokeApiAdapter },
+        // Domain services (internally inject the repositories)
+        ComparisonService,
+        { provide: POKEMON_DETAIL_SERVICE, useClass: PokemonDetailService },
+        { provide: POKEMON_CATALOG_SERVICE, useClass: PokemonCatalogService }
     ]
 })
 export class DetailModule {}

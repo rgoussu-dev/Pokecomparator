@@ -50,11 +50,16 @@
 
 .empty-message {
   color: var(--color-text-muted, #6b7280);
+  font-size: var(--font-size-base);
 }
 
 .pagination-info {
-  font-size: var(--s-1);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
   color: var(--color-text-muted, #6b7280);
+  padding: var(--s-3) var(--s-1);
+  background-color: var(--color-surface-alt);
+  border-radius: var(--s-2);
 }
 
 .pagination-ellipsis {
@@ -63,25 +68,57 @@
 }
 
 .page-size-select {
-  padding: var(--s-3) var(--s-1);
+  padding: var(--s-3) var(--s0);
   border: 1px solid var(--color-border, #d1d5db);
-  border-radius: var(--s-3);
-  background-color: var(--color-bg, #fff);
+  border-radius: var(--s-2);
+  background-color: var(--color-surface, #fff);
   color: var(--color-text, #111827);
-  font-size: var(--s-1);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, box-shadow 200ms cubic-bezier(.2,.8,.2,1);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--s-2) center;
+  padding-right: var(--s2);
 }
 
 .page-size-select:hover:not(:disabled) {
   border-color: var(--color-border-hover, #9ca3af);
+  box-shadow: 4px 4px 8px var(--color-shadow-strong), 12px 12px 24px var(--color-shadow);
 }
 
 .page-size-select:focus {
-  outline: 2px solid var(--color-primary, #3b82f6);
-  outline-offset: 2px;
+  outline: none;
+  border-color: var(--color-primary, #3b82f6);
+  box-shadow: 4px 4px 10px var(--color-shadow), 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+.page-size-select:active:not(:disabled) {
+  transform: translateY(2px) scale(0.995);
+  box-shadow: 2px 2px 6px var(--color-shadow), 8px 8px 18px var(--color-shadow);
 }
 
 .page-size-select:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Dark mode arrow adjustment */
+[data-theme="dark"] .page-size-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .page-size-select {
+    transition: none;
+  }
+  .page-size-select:active {
+    transform: none;
+  }
 }

@@ -1,11 +1,13 @@
 .label {
-  font-weight: 500;
-  font-size: var(--s0);
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
   color: inherit;
   margin-bottom: var(--s-4);
   display: inline-block;
+  letter-spacing: var(--letter-spacing-normal);
 }
 .label-required {
-  color: #d32f2f;
+  color: var(--color-error);
   margin-left: var(--s-4);
 }

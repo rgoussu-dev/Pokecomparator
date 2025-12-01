@@ -7,7 +7,8 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
   imports: [],
   templateUrl: './stack.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'stack' }
 })
 export class Stack implements OnInit, OnChanges, OnDestroy {
   @Input() space: Size | string = 's1';

@@ -5,7 +5,12 @@ import { provideHttpClient } from "@angular/common/http";
 import { CATALOG_ROUTES } from "./catalog.routes";
 import { Box, Center, Cluster, Container, Frame, PaginatedList, Searchbar, Stack } from "@ui";
 import { PokemonCard } from "./components/pokemon-card/pokemon-card";
-import { POKEMON_REPOSITORY } from "@domain/src/public-api";
+import { 
+    POKEMON_REPOSITORY, 
+    POKEMON_CATALOG_SERVICE, 
+    PokemonCatalogService,
+    ComparisonService 
+} from "@domain/src/public-api";
 import { PokeApiAdapter } from "@infra/src/public-api";
 
 @NgModule({
@@ -23,7 +28,11 @@ import { PokeApiAdapter } from "@infra/src/public-api";
     declarations: [PokeCatalog, PokemonCard],
     providers: [
         provideHttpClient(),
-        { provide: POKEMON_REPOSITORY, useClass: PokeApiAdapter }
+        // Infrastructure adapter bound to domain port
+        { provide: POKEMON_REPOSITORY, useClass: PokeApiAdapter },
+        // Domain service (internally injects the repository)
+        ComparisonService,
+        { provide: POKEMON_CATALOG_SERVICE, useClass: PokemonCatalogService }
     ]
 })
 export class CatalogModule {}

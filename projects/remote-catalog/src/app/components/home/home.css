@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  max-inline-size: none;
+}
+
+.hero-content {
+  padding: var(--s2);
+}
+
+.hero-icon {
+  font-size: 5rem;
+  filter: drop-shadow(0 10px 20px var(--color-shadow-strong));
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.hero-title .highlight {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-description {
+  font-size: var(--s1);
+  color: var(--color-text-muted);
+  max-width: 450px;
+  margin: 0;
+  line-height: 1.6;
+}

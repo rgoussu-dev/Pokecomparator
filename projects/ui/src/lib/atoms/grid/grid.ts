@@ -6,7 +6,8 @@ import { Size, ALL_SIZES } from '../../types/size';
   selector: 'pc-grid',
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'grid' }
 })
 export class Grid implements OnInit, OnChanges, OnDestroy {
   @Input() min: Size | string = '250px';

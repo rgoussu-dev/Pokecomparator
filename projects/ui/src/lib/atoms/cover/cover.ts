@@ -6,7 +6,8 @@ import { Size, ALL_SIZES } from '../../types/size';
   selector: 'pc-cover',
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'cover' }
 })
 export class Cover implements OnInit, OnChanges, OnDestroy {
   @Input() centered: string = 'h1';

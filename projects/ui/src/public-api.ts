@@ -23,4 +23,8 @@ export * from './lib/molecule/header/header';
 export * from './lib/molecule/theme-toggle/theme-toggle';
 export * from './lib/molecule/paginated-list/paginated-list';
 
+// Services
+export * from './lib/services/theme.service';
+export * from './lib/services/navigation.service';
+
 

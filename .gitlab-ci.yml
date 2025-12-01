@@ -1,0 +1,111 @@
+# GitLab CI/CD Pipeline for PokeComparator Microfrontends
+# Deploys host + remotes to GitLab Pages
+
+image: node:20
+
+stages:
+  - install
+  - build
+  - deploy
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm/
+    - node_modules/
+
+# Install dependencies
+install:
+  stage: install
+  script:
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour
+
+# Build all applications for production
+build:
+  stage: build
+  needs:
+    - install
+  script:
+    # Compute base href from GitLab predefined variables
+    # CI_PAGES_URL: https://namespace.gitlab.io/project
+    # CI_PROJECT_PATH: namespace/project
+    # For user/group pages (project named namespace.gitlab.io), use /
+    # For project pages, use /<project-name>/
+    - |
+      if [[ "$CI_PROJECT_NAME" == "$CI_PROJECT_NAMESPACE.gitlab.io" ]]; then
+        PAGES_BASE_HREF="/"
+      else
+        PAGES_BASE_HREF="/${CI_PROJECT_NAME}/"
+      fi
+      echo "Using PAGES_BASE_HREF: $PAGES_BASE_HREF"
+      echo "CI_PAGES_URL: $CI_PAGES_URL"
+    
+    # Generate production environment file using CI_PAGES_URL
+    - |
+      cat > projects/host/src/environments/environment.prod.ts << EOF
+      export const environment = {
+        production: true,
+        remotes: {
+          catalog: '${PAGES_BASE_HREF}catalog/remoteEntry.js',
+          detail: '${PAGES_BASE_HREF}detail/remoteEntry.js',
+          compare: '${PAGES_BASE_HREF}compare/remoteEntry.js',
+        }
+      };
+      EOF
+      cat projects/host/src/environments/environment.prod.ts
+    
+    # Build libraries first
+    - npm run ng build domain -- --configuration=production
+    - npm run ng build infra -- --configuration=production
+    - npm run ng build ui -- --configuration=production
+    
+    # Build remotes with correct base href for GitLab Pages subpaths
+    - npm run ng build remote-catalog -- --configuration=production --base-href="${PAGES_BASE_HREF}catalog/"
+    - npm run ng build remote-detail -- --configuration=production --base-href="${PAGES_BASE_HREF}detail/"
+    - npm run ng build remote-compare -- --configuration=production --base-href="${PAGES_BASE_HREF}compare/"
+    
+    # Build host with correct base href
+    - npm run ng build host -- --configuration=production --base-href="${PAGES_BASE_HREF}"
+    
+    # Assemble the public directory structure for GitLab Pages
+    - mkdir -p public
+    
+    # Copy host to root
+    - cp -r dist/host/* public/
+    
+    # Copy remotes to subdirectories
+    - mkdir -p public/catalog public/detail public/compare
+    - cp -r dist/remote-catalog/* public/catalog/
+    - cp -r dist/remote-detail/* public/detail/
+    - cp -r dist/remote-compare/* public/compare/
+    
+    # Create 404.html fallback for SPA routing (copy index.html)
+    - cp public/index.html public/404.html
+    - cp public/catalog/index.html public/catalog/404.html
+    - cp public/detail/index.html public/detail/404.html
+    - cp public/compare/index.html public/compare/404.html
+    
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 week
+
+# Deploy to GitLab Pages
+pages:
+  stage: deploy
+  needs:
+    - build
+  script:
+    - echo "Deploying to GitLab Pages..."
+  artifacts:
+    paths:
+      - public/
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

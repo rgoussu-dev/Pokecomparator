@@ -5,7 +5,8 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
   selector: 'pc-imposter',
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'imposter' }
 })
 export class Imposter implements OnInit, OnChanges, OnDestroy {
   @Input() breakout: boolean = false;

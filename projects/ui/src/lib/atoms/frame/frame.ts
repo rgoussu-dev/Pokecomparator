@@ -13,7 +13,8 @@ const parseRatio = (ratio: string): { n: number; d: number } => {
   selector: 'pc-frame',
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'frame' }
 })
 export class Frame implements OnInit, OnChanges, OnDestroy {
   @Input() ratio: string = '16:9';

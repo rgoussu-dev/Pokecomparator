@@ -24,7 +24,8 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
   imports: [],
   template: ` <ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'box' }
 })
 export class Box implements OnInit, OnChanges {
   @Input() padding: Size | string = 's1';

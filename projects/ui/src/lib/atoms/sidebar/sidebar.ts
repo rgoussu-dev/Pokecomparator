@@ -7,7 +7,8 @@ import { ALL_SIZES, Size } from '../../types/size';
   selector: 'pc-sidebar',
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'sidebar' }
 })
 export class Sidebar implements OnInit, OnChanges, OnDestroy {
   @Input() side: 'left' | 'right' = 'left';

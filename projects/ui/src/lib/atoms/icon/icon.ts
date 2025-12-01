@@ -13,7 +13,8 @@ import { ALL_SIZES, Size } from '../../types/size';
     <ng-content></ng-content>
   `,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'icon' }
 })
 export class Icon implements OnInit, OnChanges, OnDestroy {
   @Input() space: Size | string | null = null;

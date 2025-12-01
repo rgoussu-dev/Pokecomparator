@@ -1,25 +1,24 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { Label } from '../../atoms/label/label';
 import { CommonModule } from '@angular/common';
-import { Box, Cluster, Frame, ThemeToggle} from '@ui';
+import { Box, Cluster, Frame, ThemeToggle, Button } from '@ui';
+import { NavigationService } from '../../services/navigation.service';
 
 @Component({
   selector: 'pc-header',
-  imports: [CommonModule, Label, Box, Cluster, Frame, ThemeToggle],
+  imports: [CommonModule, Label, Box, Cluster, Frame, ThemeToggle, Button],
   templateUrl: './header.html',
-  styleUrls: ['./header.css']
+  styleUrls: ['./header.css'],
+  host: { 'data-pc-component': 'header' }
 })
 export class Header {
   @Input() title: string | null = null;
   @Input() logoSrc: string | null = null; // image source for the logo
   @Input() links: Array<{ label: string; href: string, callback: () => void }> = [];
   @Input() subtitle: string | null = null;
-  @Output() onThemeChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() logoClick: EventEmitter<void> = new EventEmitter<void>();
-  
-  handleThemeChange(isDark: boolean) {
-    this.onThemeChange.emit(isDark);
-  }
+
+  readonly navigationService = inject(NavigationService);
 
   onLogoClick(): void {
     this.logoClick.emit();

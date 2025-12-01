@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/module-federation';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { environment } from '../environments/environment';
 
 export const APP_ROUTES: Routes = [
     {
@@ -14,7 +15,7 @@ export const APP_ROUTES: Routes = [
         path: 'catalog',
         loadChildren: () => loadRemoteModule({
             type: 'module',
-            remoteEntry: 'http://localhost:4210/remoteEntry.js',
+            remoteEntry: environment.remotes.catalog,
             exposedModule: './CatalogModule'
         }).then(m => m.CatalogModule)
     },
@@ -23,7 +24,7 @@ export const APP_ROUTES: Routes = [
         path: 'detail',
         loadChildren: () => loadRemoteModule({
             type: 'module',
-            remoteEntry: 'http://localhost:4220/remoteEntry.js',
+            remoteEntry: environment.remotes.detail,
             exposedModule: './DetailModule'
         }).then(m => m.DetailModule)
     },
@@ -32,7 +33,7 @@ export const APP_ROUTES: Routes = [
         path: 'compare',
         loadChildren: () => loadRemoteModule({
             type: 'module',
-            remoteEntry: 'http://localhost:4230/remoteEntry.js',
+            remoteEntry: environment.remotes.compare,
             exposedModule: './CompareModule'
         }).then(m => m.CompareModule)
     },

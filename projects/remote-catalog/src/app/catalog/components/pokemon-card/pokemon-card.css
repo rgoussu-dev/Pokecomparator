@@ -21,7 +21,7 @@
 .pokemon-card:hover,
 .pokemon-card:focus {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--color-shadow-strong);
   outline: none;
   cursor: pointer
 }
@@ -75,12 +75,12 @@
 
 .pokemon-sprite-selector--selected::after {
   border-color: var(--color-primary, #3b82f6);
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 12px var(--color-primary-light);
 }
 
 .pokemon-sprite-selector--selected:hover::after {
   border-color: var(--color-primary-hover, #2563eb);
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 16px var(--color-primary-light);
 }
 
 .pokemon-sprite-selector__check {
@@ -90,14 +90,14 @@
   width: 24px;
   height: 24px;
   background: var(--color-primary, #3b82f6);
-  color: #fff;
+  color: var(--color-text-inverse);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: var(--s-1);
   font-weight: 700;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px var(--color-shadow);
 }
 
 /* Pokemon name - now just a label */
@@ -120,7 +120,7 @@
   border-radius: var(--s-1);
   text-transform: capitalize;
   font-weight: 500;
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 /* Type colors */

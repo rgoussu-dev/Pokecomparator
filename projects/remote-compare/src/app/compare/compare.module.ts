@@ -4,7 +4,12 @@ import { PokeCompare } from "./components/poke-compare/poke-compare";
 import { RouterModule } from "@angular/router";
 import { provideHttpClient } from "@angular/common/http";
 import { COMPARE_ROUTES } from "./compare.routes";
-import { POKEMON_DETAIL_REPOSITORY, ComparisonService, COMPARISON_SERVICE } from "@domain/src/public-api";
+import { 
+    POKEMON_DETAIL_REPOSITORY, 
+    POKEMON_DETAIL_SERVICE, 
+    PokemonDetailService,
+    ComparisonService 
+} from "@domain/src/public-api";
 import { PokeApiDetailAdapter } from "@infra/src/public-api";
 import { Box, Center, Cluster, Container, Stack, Frame } from "@ui";
 
@@ -22,8 +27,11 @@ import { Box, Center, Cluster, Container, Stack, Frame } from "@ui";
     declarations: [PokeCompare],
     providers: [
         provideHttpClient(),
+        // Infrastructure adapter bound to domain port
         { provide: POKEMON_DETAIL_REPOSITORY, useClass: PokeApiDetailAdapter },
-        { provide: COMPARISON_SERVICE, useClass: ComparisonService }
+        // Domain services (internally inject the repositories)
+        ComparisonService,
+        { provide: POKEMON_DETAIL_SERVICE, useClass: PokemonDetailService }
     ]
 })
 export class CompareModule {}

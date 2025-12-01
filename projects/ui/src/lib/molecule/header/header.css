@@ -23,4 +23,20 @@
   border-radius: 4px;
 }
 
+/* Breadcrumb styles */
+.breadcrumb-separator {
+  color: var(--color-header-text);
+  opacity: 0.5;
+  margin: 0 var(--s-2);
+}
+
+.breadcrumb-link {
+  color: var(--color-header-text) !important;
+  opacity: 0.9;
+}
+
+.breadcrumb-link:hover {
+  opacity: 1;
+}
+
 

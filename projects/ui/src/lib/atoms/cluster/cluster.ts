@@ -8,7 +8,8 @@ import { JustifyContent, AlignItems, ALL_JUSTIFY_CONTENT, ALL_ALIGN_ITEMS } from
   imports: [],
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'cluster' }
 })
 export class Cluster implements OnInit, OnChanges, OnDestroy {
   @Input() justify: JustifyContent = 'flex-start';

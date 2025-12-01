@@ -7,7 +7,8 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
   imports: [],
   template: `<ng-content></ng-content>`,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { 'data-pc-component': 'center' }
 })
 export class Center {
   @Input() maxWidth: Size | null = null;

@@ -32,7 +32,7 @@
   background: var(--color-surface, #fff);
   border-top: 1px solid var(--color-border, #e5e7eb);
   padding: var(--s0) var(--s1);
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 12px var(--color-shadow);
   z-index: 100;
   animation: slide-up 0.3s ease-out;
 }
@@ -76,7 +76,7 @@
 
 .selection-bar__btn--compare {
   background: var(--color-primary, #3b82f6);
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 .selection-bar__btn--compare:hover {

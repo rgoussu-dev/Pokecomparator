@@ -1,4 +1,4 @@
-<pc-button (click)="onToggle()" variant="secondary" [ariaLabel]="isDark ? 'Switch to light mode' : 'Switch to dark mode'" [rounded]="true">
-  <pc-icon style="font-size: 3rem;" [iconHref]="isDark ? '#moon' : '#sun'">
+<pc-button (click)="onToggle()" variant="secondary" [ariaLabel]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'" [rounded]="true">
+  <pc-icon style="font-size: 3rem;" [iconHref]="isDark() ? '#moon' : '#sun'">
   </pc-icon>
 </pc-button>

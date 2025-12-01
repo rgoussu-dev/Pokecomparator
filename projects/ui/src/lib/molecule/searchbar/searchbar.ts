@@ -5,7 +5,8 @@ import { Box, Button, Center, Cluster, Icon, Stack } from '@ui';
 @Component({
   selector: 'pc-searchbar',
   imports: [Label, InputAtom, Cluster, Stack, Icon, Button],
-  templateUrl: './searchbar.html'
+  templateUrl: './searchbar.html',
+  host: { 'data-pc-component': 'searchbar' }
 })
 export class Searchbar {
   @Input() value: string = '';
