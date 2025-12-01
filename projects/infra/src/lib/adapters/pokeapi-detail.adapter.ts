@@ -7,7 +7,7 @@ import {
   PokemonType,
   PokemonStats,
   PokemonAbility
-} from '@domain/src/public-api';
+} from 'domain';
 
 /**
  * PokeAPI detailed response type

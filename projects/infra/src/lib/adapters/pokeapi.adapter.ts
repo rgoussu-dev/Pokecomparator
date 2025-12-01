@@ -8,7 +8,7 @@ import {
   PaginationParams, 
   PokemonSummary,
   PokemonType 
-} from '@domain/src/public-api';
+} from 'domain';
 
 /**
  * PokeAPI response types

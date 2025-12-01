@@ -2,9 +2,15 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "domain": [
+        "./dist/domain"
+      ],
       "@domain/*": [
         "./projects/domain/*",
         "./dist/domain/*"
+      ],
+      "infra": [
+        "./dist/infra"
       ],
       "@infra/*": [
         "./projects/infra/*",
