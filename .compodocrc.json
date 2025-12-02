@@ -1,0 +1,11 @@
+{
+  "name": "Pokecomparator Documentation",
+  "hideGenerator": true,
+  "disablePrivate": true,
+  "disableProtected": false,
+  "disableInternal": true,
+  "disableLifeCycleHooks": false,
+  "disableRoutesGraph": false,
+  "disableCoverage": true,
+  "customFavicon": ""
+}
