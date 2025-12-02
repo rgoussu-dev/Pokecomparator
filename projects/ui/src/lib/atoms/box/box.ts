@@ -71,7 +71,8 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
  * ```
  *
  * @usageNotes
- * - Use size tokens (s-0 through s-6) for consistent spacing across the application
+ * - Use Size tokens (s-5 through s5) for consistent spacing across the application
+ * - Size tokens follow a modular scale implementation for harmonious proportions
  * - Custom CSS values (e.g., '16px', '1rem') are also supported for all size inputs
  * - When borderWidth is null or '0', an invisible outline is added to prevent layout shift
  * - Color values should use CSS custom properties for theme consistency

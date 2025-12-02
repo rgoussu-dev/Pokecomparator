@@ -67,7 +67,7 @@ import { Size, ALL_SIZES } from '../../types/size';
  * - The `min` value determines when columns wrap to a new row
  * - Using `min()` function prevents columns from being narrower than container width
  * - Items automatically stretch to fill available vertical space (align-items: stretch)
- * - Size tokens (s-0 through s-6) provide consistent spacing
+ * - Size tokens (s-5 through s5) provide consistent spacing
  * - Custom CSS values are supported for both min and space
  * - Works well for card layouts, image galleries, product grids
  * - Columns will be as wide as possible while respecting the minimum width
@@ -97,7 +97,7 @@ export class Grid implements OnInit, OnChanges, OnDestroy {
   
   /** 
    * Gap spacing between grid items.
-   * Can be a Size token (s-0 through s-6) or a custom CSS value.
+   * Can be a Size token (s-5 through s5) or a custom CSS value.
    */
   @Input() space: Size | string = 's1';
 

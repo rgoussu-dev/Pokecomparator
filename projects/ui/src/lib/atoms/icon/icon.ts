@@ -90,7 +90,7 @@ import { ALL_SIZES, Size } from '../../types/size';
 export class Icon implements OnInit, OnChanges, OnDestroy {
   /** 
    * Spacing between icon and adjacent content.
-   * Can be a Size token (s-0 through s-6) or a custom CSS value (e.g., '10px', '1rem').
+   * Can be a Size token (s-5 through s5) or a custom CSS value (e.g., '10px', '1rem').
    * When null, no spacing is applied.
    */
   @Input() space: Size | string | null = null;

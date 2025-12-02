@@ -71,7 +71,7 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
  * - Use `recursive` mode when you need consistent spacing throughout nested content
  * - The `splitAfter` feature is useful for sticky footers or pushing items to the end
  * - When splitAfter is used and stack is the only child, it takes 100% block-size
- * - Size tokens (s-0 through s-6) provide consistent spacing aligned with your design system
+ * - Size tokens (s-5 through s5) provide consistent spacing aligned with your design system
  * - Custom values like '24px' or '2rem' are also supported
  * - Combine with Box for padded containers
  *
@@ -92,7 +92,7 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
 export class Stack implements OnInit, OnChanges, OnDestroy {
   /** 
    * Spacing between stacked elements.
-   * Can be a Size token (s-0 through s-6) or a custom CSS value.
+   * Can be a Size token (s-5 through s5) or a custom CSS value.
    */
   @Input() space: Size | string = 's1';
   

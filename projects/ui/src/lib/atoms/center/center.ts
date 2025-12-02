@@ -68,15 +68,17 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
  * ```
  *
  * @usageNotes
- * - Use `maxWidth` to constrain content width (common values: '60ch', '70ch', '1200px')
- * - The 'ch' unit is ideal for readable text line lengths (45-75 characters)
+ * - Use `maxWidth` to constrain content width using relative units (e.g., '60ch', '70ch', '80rem')
+ * - Prefer 'ch' unit for readable text line lengths (45-75 characters)
+ * - Prefer 'rem' or 'em' units for width constraints to ensure responsive behavior
+ * - Avoid absolute units (px) in favor of relative units for better responsive design
  * - Set `centerText` to true for centered typography (heading sections, hero text)
  * - Set `intrinsic` to true for flexbox-based centering of inline content
  * - Use `gutterWidth` to add padding on sides (prevents content touching edges)
  * - The component uses content-box sizing for predictable max-width behavior
  * - Combine with Stack for vertically centered layouts
- * - Size tokens (s-0 through s-6) work for both maxWidth and gutterWidth
- * - Custom CSS values are also supported (e.g., '1200px', '4rem')
+ * - Size tokens (s-5 through s5) work for both maxWidth and gutterWidth
+ * - Custom CSS values with relative units are also supported (e.g., '4rem', '80ch')
  *
  * @see {@link Stack} for vertical layouts
  * @see {@link Box} for adding background and borders
@@ -95,7 +97,7 @@ import { generateSignature, injectStyle, sanitizeCssValue } from '../helpers/ato
 export class Center implements OnInit, OnChanges {
   /** 
    * Maximum width of the centered content.
-   * Common values: '60ch' for readable text, '1200px' for wide layouts.
+   * Use relative units: '60ch' for readable text, '80rem' for wide layouts.
    * When null, no maximum width is applied.
    */
   @Input() maxWidth: Size | null = null;

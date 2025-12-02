@@ -72,10 +72,10 @@ import { JustifyContent, AlignItems, ALL_JUSTIFY_CONTENT, ALL_ALIGN_ITEMS } from
  * @usageNotes
  * - Use for horizontal layouts that should wrap when space is limited
  * - The gap property ensures consistent spacing both horizontally and vertically
- * - Common justify values: 'flex-start' (default), 'center', 'space-between', 'space-around'
- * - Common align values: 'flex-start', 'center', 'baseline', 'stretch'
- * - Size tokens (s-0 through s-6) provide consistent spacing
- * - Custom spacing values like '16px' or '1rem' are also supported
+ * - See JustifyContent type for all available justify-content values
+ * - See AlignItems type for all available align-items values
+ * - Size tokens (s-5 through s5) provide consistent spacing from the modular scale
+ * - Custom spacing values with relative units (e.g., '1rem', '2em') are also supported
  * - Combine with Box for padded containers
  * - Use for navigation menus, button groups, chip lists, and toolbars
  *
