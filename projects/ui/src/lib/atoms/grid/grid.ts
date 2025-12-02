@@ -55,6 +55,7 @@ export class Grid implements OnInit, OnChanges, OnDestroy {
       .grid[data-pc-grid="${signature}"] {
         display: grid;
         grid-gap: ${space};
+        align-items: stretch;
       }
       @supports (width: min(${min}, 100%)) {
         .grid[data-pc-grid="${signature}"] {
